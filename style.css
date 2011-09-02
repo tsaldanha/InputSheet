@@ -1,0 +1,55 @@
+body{
+		font-family:Arial, Helvetica, sans-serif;
+		font-size: 12px;
+		margin: 0;
+		padding: 0;
+	}
+
+table{
+		margin: 0;
+		float:left;
+		border-collapse:collapse;
+		width:90%;
+		height:100%;
+		overflow:auto;
+	}
+
+td, th{
+		min-width: 100px;
+		height:20px;
+		line-height:20px;
+		border: 1px solid #ccc;
+		padding: 0 5px;
+	}
+thead tr:first-child th {background:#ddd;}
+thead tr:first-child th:first-child {background:#eaeaea !important;}
+th{
+		background: #eaeaea;
+		font-weight:normal;
+		-moz-user-focus: ignore; -moz-user-input: disabled; -moz-user-select: none;
+		-khtml-user-select: none;
+		-o-user-select:none
+	}
+
+thead th{text-transform:capitalize; height:auto;}
+tbody th, thead tr:first-child th:first-child{font-size: 0.8em; min-width: 40px !important}
+input{width: 90px;}
+#overlay-grid{
+	}
+#overlay-cell{
+	position:absolute;
+	border:2px solid blue;
+	display:none;	
+	overflow:hidden;
+	-moz-user-focus: ignore; -moz-user-input: disabled; -moz-user-select: none;
+	-khtml-user-select: none;
+	-o-user-select:none;
+	z-index:999;
+}
+#overlay-cell input{height:100%;width:100%; line-height:12px;}
+
+thead{float:left;position:fixed;top:0px; overflow:hidden;}
+tbody{float:left;position:fixed;top:42px; overflow:auto; height:90%; width:100%;}
+/*tbody th{position:fixed; overflow:hidden; z-index:10}*/
+/*tbody tr td:nth-of-type(1){left:100px; position:relative; background:#000000;}*/
+#footer{position:fixed; width:100%; height:30px;background-color:#0099CC;bottom:0px;}

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Untitled Document</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="inputsheet.js"></script>
+<script>
+	var Sheet = {
+			header : [
+				['nome'],
+				["categoria1",['sub1-1','sub1-2']], 
+				['categoria teste'],
+				["categoria2",['sub2-1','sub2-2','sub2-3','sub2-4']],
+				["categoria3",['sub3-1', 'sub3-2']],
+				["categoria4"],
+				['categoria5',['sub5-1','sub5-2','sub5-3']]
+				
+			],
+			group: ['Smartphone','Phone'],
+			value : [
+				[0,1,"teste"],
+				[1,3,"teste"],
+				[2,3,"teste"],
+				[5,8,"teste"],
+				[6,9,"teste"]
+			]	
+		}
+
+	$(document).ready(function(){
+		
+		var inputSheet = new InputSheet(50,Sheet);
+		inputSheet.writeSheet();
+		inputSheet.fillHeader();
+		inputSheet.fillSheet();
+		
+		var currentCell;
+		
+		$('tbody td').live('click',function(){
+			currentCell = $(this);
+			var position = $(this).offset(); 
+			var height = $(this).innerHeight();
+			var width = $(this).innerWidth();
+			$('#overlay-cell').css({'top': position.top, 'left': position.left, 'width':width, 'height':height}).show();
+		});
+		$('#overlay-cell').live('click',function(){
+			var value = $(currentCell).html();
+			$(this).html('');
+			$('<input id="cell" type="text" value="'+value+'"/>').appendTo($(this));
+			$('#cell').focus();
+		});
+		
+		$('#cell').live('focusout',function(){
+			var value = $(this).val();
+			var column = $(currentCell).index() ;
+			var row = $(currentCell).parent().index() +1;
+			$(currentCell).html(value);
+			$(this).remove();
+		});
+		$('#addRow').click(function(){
+			inputSheet.addLine();
+		});
+		$('tbody').scroll(function(){
+			var position = $('tbody tr th:first-child').offset();
+
+			
+			$('thead').animate({
+				heigth:'100%',
+				left: position.left
+				
+			}, 0, function() {
+			// Animation complete.
+			});
+		});
+	});
+</script>
+</head>
+
+<body>
+	<div id="overlay-grid">
+		<div id="overlay-cell">
+        	
+        </div>    
+        <table>
+            <thead>
+                <tr id="category">
+                    <th rowspan="2"></th>
+                </tr>
+                <tr id="subCategory">
+                	
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+        <div id="footer">
+        	<input type="button" id="addRow" value="[+]">
+        </div>
+        
+    </div>
+</body>
+</html>
