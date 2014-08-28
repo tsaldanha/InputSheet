@@ -8,6 +8,7 @@
 <script src="inputsheet.js"></script>
 <script>
 	var Sheet = {
+			rows: 50,
 			header : [
 				['nome'],
 				["categoria1",['sub1-1','sub1-2']], 
@@ -29,50 +30,7 @@
 		}
 
 	$(document).ready(function(){
-		
-		var inputSheet = new InputSheet(50,Sheet);
-		inputSheet.writeSheet();
-		inputSheet.fillHeader();
-		inputSheet.fillSheet();
-		
-		var currentCell;
-		
-		$('tbody td').live('click',function(){
-			currentCell = $(this);
-			var position = $(this).offset(); 
-			var height = $(this).innerHeight();
-			var width = $(this).innerWidth();
-			$('#overlay-cell').css({'top': position.top, 'left': position.left, 'width':width, 'height':height}).show();
-		});
-		$('#overlay-cell').live('click',function(){
-			var value = $(currentCell).html();
-			$(this).html('');
-			$('<input id="cell" type="text" value="'+value+'"/>').appendTo($(this));
-			$('#cell').focus();
-		});
-		
-		$('#cell').live('focusout',function(){
-			var value = $(this).val();
-			var column = $(currentCell).index() ;
-			var row = $(currentCell).parent().index() +1;
-			$(currentCell).html(value);
-			$(this).remove();
-		});
-		$('#addRow').click(function(){
-			inputSheet.addLine();
-		});
-		$('tbody').scroll(function(){
-			var position = $('tbody tr th:first-child').offset();
-
-			
-			$('thead').animate({
-				heigth:'100%',
-				left: position.left
-				
-			}, 0, function() {
-			// Animation complete.
-			});
-		});
+		$.InputSheet(Sheet);
 	});
 </script>
 </head>
