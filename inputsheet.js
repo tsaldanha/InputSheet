@@ -46,21 +46,21 @@ var alphabet = ['a','b','c','d','e','f','g','h','i','j','l','m','n','o','p','q',
 
 			var currentCell;
 			
-			$('tbody td').live('click',function(){
+			$('tbody td').on('click',function(){
 				currentCell = $(this);
 				var position = $(this).offset(); 
 				var height = $(this).innerHeight();
 				var width = $(this).innerWidth();
 				$('#overlay-cell').css({'top': position.top, 'left': position.left, 'width':width, 'height':height}).show();
 			});
-			$('#overlay-cell').live('click',function(){
+			$('#overlay-cell').on('click',function(){
 				var value = $(currentCell).html();
 				$(this).html('');
 				$('<input id="cell" type="text" value="'+value+'"/>').appendTo($(this));
 				$('#cell').focus();
 			});
 			
-			$('#cell').live('focusout',function(){
+			$('#cell').on('focusout',function(){
 				var value = $(this).val();
 				var column = $(currentCell).index() ;
 				var row = $(currentCell).parent().index() +1;
