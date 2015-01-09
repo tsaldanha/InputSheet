@@ -46,6 +46,7 @@ var alphabet = ['a','b','c','d','e','f','g','h','i','j','l','m','n','o','p','q',
 
 			var currentCell;
 			
+			//Editing cell
 			$('tbody td').on('click',function(){
 				currentCell = $(this);
 				var position = $(this).offset(); 
@@ -61,12 +62,15 @@ var alphabet = ['a','b','c','d','e','f','g','h','i','j','l','m','n','o','p','q',
 			});
 			
 			$('#cell').on('focusout',function(){
+				console.log('teste');
 				var value = $(this).val();
 				var column = $(currentCell).index() ;
 				var row = $(currentCell).parent().index() +1;
 				$(currentCell).html(value);
 				$(this).remove();
-			});
+			});	
+			
+
 			$('#addRow').click(function(){
 				$.InputSheet('addLine');
 			});
